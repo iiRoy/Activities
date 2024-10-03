@@ -5,7 +5,6 @@ using StaticArrays: SVector
 end
 
 function agent_step!(agent, model)
-    println(agent.pos)
     move_agent!(agent, model, 1.0)
 end
 
