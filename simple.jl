@@ -15,7 +15,7 @@ function initialize_model(extent = (25, 10))
     model = StandardABM(Car, space2d; rng, agent_step!, scheduler = Schedulers.Randomly())
 
     for px in randperm(25)[1:5]
-        add_agent!(SVector{2, Float64}(px, 0.0), model; vel=SVector{2, Float64}(0.6, 0.0))
+        add_agent!(SVector{2, Float64}(px, 0.0), model; vel=SVector{2, Float64}(1.0, 0.0))
     end
     model
 end
