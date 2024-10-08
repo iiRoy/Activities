@@ -1,6 +1,8 @@
 'use client'
 import { useRef, useState } from "react";
 import styles from "./page.module.css";
+import { Button, ButtonGroup } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
 
 export default function Home() {
   let [location, setLocation] = useState("");
@@ -44,15 +46,17 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div>
-        <button variant={"contained"} onClick={setup}>
-          Setup
-        </button>
-        <button variant={"contained"} onClick={handleStart}>
-          Start
-        </button>
-        <button variant={"contained"} onClick={handleStop}>
-          Stop
-        </button>
+        <ButtonGroup variation="primary">
+          <Button onClick={setup}>
+            Setup
+          </Button>
+          <Button onClick={handleStart}>
+            Start
+          </Button>
+          <Button onClick={handleStop}>
+            Stop
+          </Button>
+        </ButtonGroup>
       </div>
       <svg width="800" height="500" xmlns="http://www.w3.org/2000/svg" style={{backgroundColor:"white"}}>
 
@@ -60,7 +64,7 @@ export default function Home() {
       {/* <image x={0} y={240} href="./racing-car.png"/> */}
       {
         cars.map(car =>
-          <image id={car.id} x={car.pos[0]*32} y={240} width={32} href="./racing-car.png"/>
+          <image id={car.id} x={car.pos[0]*32} y={240 + car.pos[1]*20} width={32} href={car.id == 1 ? "./dark-racing-car.png" :"./racing-car.png"} />
         )
       }
       </svg>
