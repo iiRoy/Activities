@@ -58,15 +58,25 @@ export default function Home() {
           </Button>
         </ButtonGroup>
       </div>
-      <svg width="800" height="500" xmlns="http://www.w3.org/2000/svg" style={{backgroundColor:"white"}}>
-
-      <rect x={0} y={200} width={800} height={80} style={{fill: "darkgray"}}></rect>
+      <svg width="1800" height="800" xmlns="http://www.w3.org/2000/svg" style={{backgroundColor:"white"}}>
+      //Sección Izquierda
+      <rect x={0} y={0} width={800} height={300} style={{fill: "green"}}></rect>
+      <rect x={0} y={300} width={800} height={200} style={{fill: "darkgray"}}></rect>
       {/* <image x={0} y={240} href="./racing-car.png"/> */}
       {
         cars.map(car =>
           <image id={car.id} x={car.pos[0]*32} y={240 + car.pos[1]*20} width={32} href={car.id == 1 ? "./dark-racing-car.png" :"./racing-car.png"} />
         )
       }
+      <rect x={0} y={500} width={800} height={300} style={{fill: "green"}}></rect>
+      //Sección Derecha
+      <rect x={1100} y={0} width={800} height={300} style={{fill: "green"}}></rect>
+      <rect x={1100} y={300} width={800} height={200} style={{fill: "darkgray"}}></rect>
+      <rect x={1100} y={500} width={800} height={300} style={{fill: "green"}}></rect>
+      //Sección Superior
+      <rect x={800} y={0} width={300} height={400} style={{fill: "darkgray"}}></rect>
+      //Sección Inferior
+      <rect x={800} y={400} width={300} height={400} style={{fill: "darkgray"}}></rect>
       </svg>
     </main>
   );

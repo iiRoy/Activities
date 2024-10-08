@@ -1,8 +1,15 @@
 using Agents, Random
 using StaticArrays: SVector
 
+# Estados de los Semáforos
+@enum Green Yellow Red
+
 @agent struct Car(ContinuousAgent{2,Float64})
     accelerating::Bool = true
+end
+
+@agent struct trafficLight()
+    status::Color = Red
 end
 
 accelerate(agent) = agent.vel[1] + 0.05
