@@ -2,16 +2,19 @@ using Agents, Random
 using StaticArrays: SVector
 
 # Estados de los Semáforos
-@enum Green Yellow Red
-
+@enum LightColor green yellow red
+"""
 @agent struct Car(ContinuousAgent{2,Float64})
     accelerating::Bool = true
 end
+"""
 
-@agent struct trafficLight()
-    status::Color = Red
+@agent struct stopLight(ContinuousAgent{2,Float64})
+    status::LightColor = red
+    time_counter::Int = 0
 end
 
+"""
 accelerate(agent) = agent.vel[1] + 0.05
 decelerate(agent) = agent.vel[1] - 0.1
 
@@ -25,7 +28,7 @@ end
 
 function  agent_step!(agent, model)
     new_velocity = agent.accelerating ? accelerate(agent) : decelerate(agent)
-
+    
     if new_velocity >= 1.0
         new_velocity = 1.0
         agent.accelerating = false
@@ -37,13 +40,41 @@ function  agent_step!(agent, model)
     agent.vel = (new_velocity, 0.0)
     move_agent!(agent, model, 0.4)
 end
+"""
+
+function agent_step!(agent, model)
+    cycle_length = 28  # Ciclo completo de 28 pasos
+    green_duration = 10
+    yellow_duration = 4
+
+    # Incrementamos el contador de tiempo del agente
+    agent.time_counter += 1
+
+    # Si el contador alcanza el final del ciclo, lo reiniciamos
+    if agent.time_counter > cycle_length
+        agent.time_counter = 1
+    end
+
+    # Cambiamos el estado del semáforo en función del contador
+    if agent.time_counter <= green_duration
+        agent.status = green
+    elseif agent.time_counter <= green_duration + yellow_duration
+        agent.status = yellow
+    else
+        agent.status = red
+    end
+end
 
 function initialize_model(extent = (25, 10))
     space2d = ContinuousSpace(extent; spacing = 0.5, periodic = true)
-    rng = Random.MersenneTwister()
-
-    model = StandardABM(Car, space2d; rng, agent_step!, scheduler = Schedulers.Randomly())
-
+    
+    #rng = Random.MersenneTwister()
+    
+    model = StandardABM(stopLight, space2d; agent_step!, scheduler = Schedulers.Randomly())
+    #model = StandardABM(Car, space2d; rng, agent_step!, scheduler = Schedulers.Randomly())
+    add_agent!(SVector{2, Float64}(12, 7), model; vel=SVector{2, Float64}(0.0, 0.0))
+    add_agent!(SVector{2, Float64}(13, 8), model; vel=SVector{2, Float64}(0.0, 0.0))
+    """
     first = true
     for px in randperm(25)[1:9]
         if first
@@ -53,6 +84,7 @@ function initialize_model(extent = (25, 10))
         end
         first = false
     end
+    """
     model
 end
 
