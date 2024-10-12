@@ -14,6 +14,9 @@ end
     time_counter::Int = 0
 end
 
+green_duration = 10
+yellow_duration = 4
+
 """
 accelerate(agent) = agent.vel[1] + 0.05
 decelerate(agent) = agent.vel[1] - 0.1
@@ -43,9 +46,7 @@ end
 """
 
 function agent_step!(agent, model)
-    cycle_length = 28  # Ciclo completo de 28 pasos
-    green_duration = 10
-    yellow_duration = 4
+    cycle_length = 2 * (green_duration + yellow_duration)  # Ciclo completo de 28 pasos
 
     # Incrementamos el contador de tiempo del agente
     agent.time_counter += 1
@@ -72,8 +73,19 @@ function initialize_model(extent = (25, 10))
     
     model = StandardABM(stopLight, space2d; agent_step!, scheduler = Schedulers.Randomly())
     #model = StandardABM(Car, space2d; rng, agent_step!, scheduler = Schedulers.Randomly())
-    add_agent!(SVector{2, Float64}(12, 7), model; vel=SVector{2, Float64}(0.0, 0.0))
-    add_agent!(SVector{2, Float64}(13, 8), model; vel=SVector{2, Float64}(0.0, 0.0))
+    add_agent!(SVector{2, Float64}(12, 6.5), model; vel=SVector{2, Float64}(0.0, 0.0))
+    add_agent!(SVector{2, Float64}(13, 8), model; vel=SVector{2, Float64}(0.0, 0.0)) 
+    changing = true
+    for agent in allagents(model)
+        if changing === true
+            agent.status = green
+            changing = false
+        else
+            agent.status = red
+            agent.time_counter = green_duration + yellow_duration
+            changing = true
+        end
+    end
     """
     first = true
     for px in randperm(25)[1:9]
