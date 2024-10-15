@@ -10,40 +10,36 @@ route("/simulations", method = POST) do
     model = initialize_model()
     id = string(uuid1())
     instances[id] = model
-
     stopLights = []
-    for stopLight in allagents(model)
-        push!(stopLights, stopLight)
-    end
-    """
     cars = []
-    for car in allagents(model)
-        push!(cars, car)
+
+    for agent in allagents(model)
+        if agent isa Car
+            push!(stopLights, agent)
+            json(Dict("Location" => "/simulations/$id", "stopLights" => stopLights))
+        elseif agent isa stopLight
+            push!(cars, agent)
+            json(Dict("Location" => "/simulations/$id", "cars" => cars))
+        end
     end
-    
-    json(Dict("Location" => "/simulations/$id", "cars" => cars))
-    """
-    json(Dict("Location" => "/simulations/$id", "stopLights" => stopLights))
 end
 
 route("/simulations/:id") do
     println(payload(:id))
     model = instances[payload(:id)]
     run!(model, 1)
-    """
     cars = []
-    for car in allagents(model)
-        push!(cars, car)
-    end
-    
-    json(Dict("cars" => cars))
-    """
     stopLights = []
-    for stopLight in allagents(model)
-        push!(stopLights, stopLight)
+
+    for agent in allagents(model)
+        if agent isa Car
+            push!(cars, agent)
+            json(Dict("cars" => cars))
+        elseif agent isa stopLight
+            push!(stopLights, agent)
+            json(Dict("stopLights" => stopLights))
+        end
     end
-    
-    json(Dict("stopLights" => stopLights))
 end
 
 

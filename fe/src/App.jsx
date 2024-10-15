@@ -7,21 +7,23 @@ import Plotly from 'plotly.js/dist/plotly';
 export default function Home() {
   let [location, setLocation] = useState("");
   const [button, setButton] = useState(false); // Estado para manejar el botón de Setup
+  let [cars, setCars] = useState([]);
   let [simSpeed, setSimSpeed] = useState(10);
   let [stopLights, setStopLights] = useState([]);
   const running = useRef(null);
   const stopLightData = useRef([]);
 
   let setup = () => {
-    console.log("Setup iniciado");
+    console.log("Hola");
     fetch("http://localhost:8000/simulations", {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({})
-    })
-    .then(resp => resp.json())
+      body: JSON.stringify({  })
+    }).then(resp => resp.json())
     .then(data => {
+      console.log(data);
       setLocation(data["Location"]);
+      setCars(data["cars"]);
       setStopLights(data["stopLights"]);
     });
   }
@@ -33,6 +35,7 @@ export default function Home() {
       fetch("http://localhost:8000" + location)
       .then(res => res.json())
       .then(data => {
+        setCars(data["cars"]);
         setStopLights(data["stopLights"]);
       });
     }, 1000 / simSpeed);
@@ -58,8 +61,12 @@ export default function Home() {
         {/* Sección Izquierda */}
         <rect x={0} y={0} width={400} height={400} style={{ fill: "green" }}></rect> {/* Pasto superior izquierdo */}
         <rect x={0} y={150} width={400} height={100} style={{ fill: "darkgray" }}></rect> {/* Carretera */}
-        {/* Aquí puedes agregar los coches si es necesario */}
-        {/* <image x={0} y={240} href="./racing-car.png" /> */}
+        {<image x={0} y={240} href="./racing-car.png"/>}
+        {
+        cars.map(car =>
+          <image id={car.id} x={car.pos[0]*32} y={240 + car.pos[1]*20} width={32} href={car.id == 1 ? "./dark-racing-car.png" :"./racing-car.png"} />
+        )
+        }
         <rect x={0} y={250} width={400} height={150} style={{ fill: "green" }}></rect> {/* Pasto inferior izquierdo */}
 
         {/* Sección Derecha */}
