@@ -61,12 +61,6 @@ export default function Home() {
         {/* Sección Izquierda */}
         <rect x={0} y={0} width={400} height={400} style={{ fill: "green" }}></rect> {/* Pasto superior izquierdo */}
         <rect x={0} y={150} width={400} height={100} style={{ fill: "darkgray" }}></rect> {/* Carretera */}
-        {<image x={0} y={240} href="./racing-car.png"/>}
-        {
-        cars.map(car =>
-          <image id={car.id} x={car.pos[0]*32} y={240 + car.pos[1]*20} width={32} href={car.id == 1 ? "./dark-racing-car.png" :"./racing-car.png"} />
-        )
-        }
         <rect x={0} y={250} width={400} height={150} style={{ fill: "green" }}></rect> {/* Pasto inferior izquierdo */}
 
         {/* Sección Derecha */}
@@ -97,6 +91,16 @@ export default function Home() {
             */
       ))
   }
+        {
+        cars.map(car =>
+          <image 
+          id={car.id} 
+          x={car.pos[0]*32} 
+          y={55 + car.pos[1]*20} 
+          width={32} 
+          href={car.id == 3 ? "./dark-racing-car.png" :"./racing-car.png"} />
+        )
+        }
 </svg>
     </>
   );

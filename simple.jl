@@ -6,75 +6,72 @@ using StaticArrays: SVector
 
 @agent struct Car(ContinuousAgent{2,Float64})
     accelerating::Bool = true
-    posCar::SVector = [0,0]
 end
-
 
 @agent struct stopLight(ContinuousAgent{2,Float64})
     status::LightColor = red
     time_counter::Int = 0
-    posStopLight::SVector = [0,0]
 end
 
-green_duration = 10
-yellow_duration = 4
+green_duration = 25
+yellow_duration = 10
 
 
 accelerate(agent::Car) = agent.vel[1] + 0.05
 decelerate(agent::Car) = agent.vel[1] - 0.1
 
-function car_ahead(agent::Car, model)
-    for neighbor in nearby_agents(agent, model, 1.0)
-        if neighbor.pos[1] > agent.pos[1]
-            return neighbor
+# Verificar el semáforo más cercano delante en el eje X
+function closest_light_ahead(agent::Car, model)
+    closest_light = nothing
+    min_distance = Inf
+    
+    # Buscar semáforos dentro de un radio de 30.0 unidades
+    for neighbor in nearby_agents(agent, model, 30.0)
+        if isa(neighbor, stopLight) && neighbor.pos[2] < agent.pos[2]  # Asegurar que están en la misma calle (misma posición en Y)
+            
+            # Verificar que el semáforo esté delante del coche en el eje X
+            if neighbor.pos[1] > agent.pos[1]
+                dist_to_light = neighbor.pos[1] - agent.pos[1]
+                
+                # Seleccionar el semáforo más cercano en el eje X
+                if dist_to_light < min_distance
+                    min_distance = dist_to_light
+                    closest_light = neighbor
+                end
+            end
         end
     end
+    
+    return closest_light, min_distance
 end
 
-function is_red_light_ahead(agent::Car, model)
-    for neighbor in nearby_agents(agent, model, 1.0)
-        if isa(neighbor, stopLight) && neighbor.status == red && neighbor.pos[1] > agent.pos[1]
-            return true
+
+# Comportamiento del auto
+function agent_step!(agent::Car, model)
+    # Verificar el semáforo más cercano
+    light, dist_to_light = closest_light_ahead(agent, model)
+
+    if light !== nothing
+        if light.status == red
+            if dist_to_light <= 0.5 || agent.pos[1] > light.pos[1]
+                agent.vel = (0.0, 0.0)
+            elseif dist_to_light <= 2.5 && dist_to_light >= 0.5
+                agent.vel = (max(0.0, decelerate(agent)), 0.0)
+            end
+        elseif light.status == yellow && dist_to_light <= 3.0 && dist_to_light >= 1
+            # Desacelerar si el semáforo está en amarillo y está a menos de 3.0 unidades
+            agent.vel = (max(0.0, decelerate(agent)+ 0.5), 0.0)
+        else
+            # Acelerar si el semáforo está en verde o está lejos
+            agent.vel = (min(1.0, accelerate(agent)), 0.0)
         end
-    end
-    return false
-end
-
-function  agent_step!(agent::Car, model)
-    new_velocity = agent.accelerating ? accelerate(agent) : decelerate(agent)
-    
-    if new_velocity >= 1.0
-        new_velocity = 1.0
-        agent.accelerating = false
-    elseif new_velocity <= 0.0
-        new_velocity = 0.0
-        agent.accelerating = true
-    end
-    
-    agent.vel = (new_velocity, 0.0)
-    move_agent!(agent, model, 0.4)
-end
-
-
-function agent_step!(agent::stopLight, model)
-    cycle_length = 2 * (green_duration + yellow_duration)  # Ciclo completo de 28 pasos
-
-    # Incrementamos el contador de tiempo del agente
-    agent.time_counter += 1
-
-    # Si el contador alcanza el final del ciclo, lo reiniciamos
-    if agent.time_counter > cycle_length
-        agent.time_counter = 1
-    end
-
-    # Cambiamos el estado del semáforo en función del contador
-    if agent.time_counter <= green_duration
-        agent.status = green
-    elseif agent.time_counter <= green_duration + yellow_duration
-        agent.status = yellow
     else
-        agent.status = red
+        # Si no hay semáforo cerca, continuar acelerando
+        agent.vel = (min(1.0, accelerate(agent)), 0.0)
     end
+
+    # Mover el auto en el espacio (eje X)
+    move_agent!(agent, model, 0.4)
 end
 
 function initialize_model(extent = (25, 10))
@@ -85,8 +82,8 @@ function initialize_model(extent = (25, 10))
     model = StandardABM(Union{Car, stopLight}, space2d; rng, agent_step!, scheduler = Schedulers.fastest)
     #model = StandardABM(stopLight, space2d; agent_step!, scheduler = Schedulers.Randomly())
     #model = StandardABM(Car, space2d; rng, agent_step!, scheduler = Schedulers.Randomly())
-    add_agent!(stopLight, model; posStopLight = (12, 6.5), vel = (0.0,0.0))
-    add_agent!(stopLight, model; posStopLight = (13, 8), vel = (0.0,0.0)) 
+    add_agent!(stopLight, model; pos = SVector{2, Float64}(12, 3.5), vel = SVector{2, Float64}(0.0, 0.0))
+    add_agent!(stopLight, model; pos = SVector{2, Float64}(16.3, 8.5), vel = SVector{2, Float64}(0.0, 0.0))
     changing = true
     for agent in allagents(model)
         if changing === true
@@ -99,11 +96,11 @@ function initialize_model(extent = (25, 10))
         end
     end
     first = true
-    for px in randperm(25)[1:9]
+    for px in randperm(25)[1]
         if first
-            add_agent!(Car, model;posCar = (px, 10), vel=SVector{2, Float64}(1.0, 0.0))
+            add_agent!(Car, model;pos = (px, 7), vel=SVector{2, Float64}(1.0, 0.0))
         else
-            add_agent!(Car, model; posCar = (px, 10),  vel=SVector{2, Float64}(rand(Uniform(0.2, 0.7)), 0.0))
+            add_agent!(Car, model; pos = (px, 7),  vel=SVector{2, Float64}(rand(Uniform(0.2, 0.7)), 0.0))
         end
         first = false
     end

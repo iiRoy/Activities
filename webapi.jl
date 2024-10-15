@@ -4,49 +4,56 @@ using UUIDs
 
 instances = Dict()
 
+# Ruta para inicializar la simulación
 route("/simulations", method = POST) do
     payload = jsonpayload()
 
     model = initialize_model()
     id = string(uuid1())
     instances[id] = model
+    
     stopLights = []
     cars = []
 
+    # Recolectar semáforos y autos en sus respectivas listas
     for agent in allagents(model)
-        if agent isa Car
+        if agent isa stopLight
             push!(stopLights, agent)
-            json(Dict("Location" => "/simulations/$id", "stopLights" => stopLights))
-        elseif agent isa stopLight
+        elseif agent isa Car
             push!(cars, agent)
-            json(Dict("Location" => "/simulations/$id", "cars" => cars))
         end
     end
+    
+    # Devolver la respuesta con las listas de autos y semáforos
+    json(Dict("Location" => "/simulations/$id", "stopLights" => stopLights, "cars" => cars))
 end
 
+# Ruta para ejecutar un paso de la simulación
 route("/simulations/:id") do
-    println(payload(:id))
-    model = instances[payload(:id)]
+    model_id = payload(:id)
+    model = instances[model_id]
     run!(model, 1)
+
     cars = []
     stopLights = []
 
+    # Recolectar semáforos y autos en sus respectivas listas
     for agent in allagents(model)
-        if agent isa Car
-            push!(cars, agent)
-            json(Dict("cars" => cars))
-        elseif agent isa stopLight
+        if agent isa stopLight
             push!(stopLights, agent)
-            json(Dict("stopLights" => stopLights))
+        elseif agent isa Car
+            push!(cars, agent)
         end
     end
-end
 
+    # Devolver las listas actualizadas de autos y semáforos
+    json(Dict("stopLights" => stopLights, "cars" => cars))
+end
 
 Genie.config.run_as_server = true
 Genie.config.cors_headers["Access-Control-Allow-Origin"] = "*"
 Genie.config.cors_headers["Access-Control-Allow-Headers"] = "Content-Type"
-Genie.config.cors_headers["Access-Control-Allow-Methods"] = "GET,POST,PUT,DELETE,OPTIONS" 
+Genie.config.cors_headers["Access-Control-Allow-Methods"] = "GET,POST,PUT,DELETE,OPTIONS"
 Genie.config.cors_allowed_origins = ["*"]
 
 up()
