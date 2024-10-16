@@ -3,9 +3,11 @@ using StaticArrays: SVector
 
 # Estados de los Semáforos
 @enum LightColor green yellow red
+@enum Streets av1 av2
 
 @agent struct Car(ContinuousAgent{2,Float64})
     accelerating::Bool = true
+    street::Streets = av1
 end
 
 @agent struct stopLight(ContinuousAgent{2,Float64})
@@ -74,6 +76,27 @@ function agent_step!(agent::Car, model)
     move_agent!(agent, model, 0.4)
 end
 
+function agent_step!(agent::stopLight, model)
+    cycle_length = 2 * (green_duration + yellow_duration)  # Ciclo completo de 28 pasos
+
+    # Incrementamos el contador de tiempo del agente
+    agent.time_counter += 1
+
+    # Si el contador alcanza el final del ciclo, lo reiniciamos
+    if agent.time_counter > cycle_length
+        agent.time_counter = 1
+    end
+
+    # Cambiamos el estado del semáforo en función del contador
+    if agent.time_counter <= green_duration
+        agent.status = green
+    elseif agent.time_counter <= green_duration + yellow_duration
+        agent.status = yellow
+    else
+        agent.status = red
+    end
+end
+
 function initialize_model(extent = (25, 10))
     space2d = ContinuousSpace(extent; spacing = 0.5, periodic = true)
     
@@ -96,13 +119,29 @@ function initialize_model(extent = (25, 10))
         end
     end
     first = true
-    for px in randperm(25)[1]
+    vertical = false
+    if vertical === false
+        range = 25
+    else
+        range = 10
+    end
+    for px in randperm(range)[1:4]
         if first
-            add_agent!(Car, model;pos = (px, 7), vel=SVector{2, Float64}(1.0, 0.0))
+            if changing === false
+                add_agent!(Car, model;pos = (px, 7), vel=SVector{2, Float64}(1.0, 0.0)).street = av1
+                vertical = true
+            else
+                add_agent!(Car, model;pos = (14, px), vel=SVector{2, Float64}(1.0, 0.0)).street = av2
+                first = false
+                vertical = false
+            end
         else
-            add_agent!(Car, model; pos = (px, 7),  vel=SVector{2, Float64}(rand(Uniform(0.2, 0.7)), 0.0))
+            if vertical === false
+                add_agent!(Car, model; pos = (px, 7),  vel=SVector{2, Float64}(rand(Uniform(0.2, 0.7)), 1.0)).street = av1
+            else
+                add_agent!(Car, model; pos = (14, px),  vel=SVector{2, Float64}(rand(Uniform(0.2, 0.7)), 1.0)).street = av2
+            end
         end
-        first = false
     end
     model
 end
