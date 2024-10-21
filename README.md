@@ -24,6 +24,8 @@ Dentro de las ciencias de la computación es importante el poder recrear comport
 
 Es importante recalcar que el proyecto planteado se está basando en el modelo de tráfico símple realizado por Uri Wilensky, realizado en Northwestern University. [Ir a la simulación.](https://tinyurl.com/237faa9a)[^1]
 
+![alt text](image.png)
+
 ## ¿Cómo usarlo?
 
 > [!WARNING]
