@@ -183,7 +183,7 @@ function agent_step!(agent::stopLight, model)
 end
 
 
-function initialize_model(extent = (28, 28))
+function initialize_model(extent = (28, 15))
     space2d = ContinuousSpace(extent; spacing = 0.5, periodic = true)
     
     rng = Random.MersenneTwister()
