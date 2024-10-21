@@ -183,7 +183,7 @@ function agent_step!(agent::stopLight, model)
 end
 
 
-function initialize_model(extent = (28, 15))
+function initialize_model(extent = (28, 15); numCarsN = 0, numCarsO = 1)
     space2d = ContinuousSpace(extent; spacing = 0.5, periodic = true)
     
     rng = Random.MersenneTwister()
@@ -207,35 +207,32 @@ function initialize_model(extent = (28, 15))
         end
     end
     first = true
-    vertical = true  # Empieza con el primer auto en av2 (vertical)
     range_x = (5.0, 20.0)  # Rango de posiciones X para av1
     range_y = (0.0, 10.0)   # Rango de posiciones Y para av2
 
-    for _ in 1:14
-        if first
-            # Primer auto será en av2 (vertical)
-            if vertical
+    if numCarsN != 0
+        for _ in 1:numCarsN
+            if first
                 pos_y = rand(range_y[1]:0.5:range_y[2])  # Rango para av2
                 add_agent!(Car, model; pos = (rand(13:14), pos_y), vel=SVector{2, Float64}(0.0, 0.1), street = av2, orientation = right)
+                first = false  # Ya no es el primer auto
             else
+                pos_y = rand(range_y[1]:0.5:range_y[2])  # Rango para av2
+                add_agent!(Car, model; pos = (rand(13:14), pos_y), vel=SVector{2, Float64}(0.0, 0.1), street = av2, orientation = right)
+            end
+        end
+    end
+    if numCarsO != 0
+        first = true
+        for _ in 1:numCarsO
+            if first
                 pos_x = rand(range_x[1]:0.5:range_x[2])  # Rango para av1
                 add_agent!(Car, model; pos = (pos_x, rand(7:8)), vel=SVector{2, Float64}(0.1, 0.0))
-            end
-            if vertical === false
                 first = false  # Ya no es el primer auto
-            end
-            vertical = !vertical  # El siguiente será horizontal
-        else
-            if vertical
-                # Añadir auto en av2 (vertical)
-                pos_y = rand(range_y[1]:0.5:range_y[2])  # Rango para av2
-                add_agent!(Car, model; pos = (rand(13:14), pos_y), vel=SVector{2, Float64}(0.0, 0.1), street = av2, orientation = right)
-                vertical = false  # Alternar para que el siguiente sea horizontal
             else
                 # Añadir auto en av1 (horizontal)
                 pos_x = rand(range_x[1]:0.5:range_x[2])  # Rango para av1
                 add_agent!(Car, model; pos = (pos_x, rand(7:8)), vel=SVector{2, Float64}(0.1, 0.0))
-                vertical = true  # Alternar para que el siguiente sea vertical
             end
         end
     end

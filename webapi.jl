@@ -7,8 +7,10 @@ instances = Dict()
 # Ruta para inicializar la simulación
 route("/simulations", method = POST) do
     payload = jsonpayload()
+    numCarsN = payload["numCarsN"]
+    numCarsO = payload["numCarsO"]  
 
-    model = initialize_model()
+    model = initialize_model(numCarsN=(numCarsN), numCarsO=(numCarsO))
     id = string(uuid1())
     instances[id] = model
     
