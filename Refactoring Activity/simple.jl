@@ -74,6 +74,14 @@ function is_light_ahead(agent, light, mode = :check)
     end
 end
 
+function add_cars(model, n, street::Streets, orientation::Float64)
+    for _ in 1:n
+        pos = street == av1 ? (rand(5.0:0.5:20.0), rand(7:8)) : (rand(13:14), rand(0.0:0.5:10.0))
+        vel = street == av1 ? SVector(0.1, 0.0) : SVector(0.0, 0.1)
+        add_agent!(Car, model; pos=pos, vel=vel, street=street, orientation=orientation)
+    end
+end
+
 const SMOOTHING_FACTOR = 0.18
 
 function compute_speed(agent::Car)
@@ -185,32 +193,8 @@ function initialize_model(extent = (28, 15); numCarsN = 0, numCarsO = 1)
     range_x = (5.0, 20.0)  # Rango de posiciones X para av1
     range_y = (0.0, 10.0)   # Rango de posiciones Y para av2
 
-    if numCarsN != 0
-        for _ in 1:numCarsN
-            if first
-                pos_y = rand(range_y[1]:0.5:range_y[2])  # Rango para av2
-                add_agent!(Car, model; pos = (rand(13:14), pos_y), vel=SVector{2, Float64}(0.0, 0.1), street = av2, orientation = right)
-                first = false  # Ya no es el primer auto
-            else
-                pos_y = rand(range_y[1]:0.5:range_y[2])  # Rango para av2
-                add_agent!(Car, model; pos = (rand(13:14), pos_y), vel=SVector{2, Float64}(0.0, 0.1), street = av2, orientation = right)
-            end
-        end
-    end
-    if numCarsO != 0
-        first = true
-        for _ in 1:numCarsO
-            if first
-                pos_x = rand(range_x[1]:0.5:range_x[2])  # Rango para av1
-                add_agent!(Car, model; pos = (pos_x, rand(7:8)), vel=SVector{2, Float64}(0.1, 0.0))
-                first = false  # Ya no es el primer auto
-            else
-                # Añadir auto en av1 (horizontal)
-                pos_x = rand(range_x[1]:0.5:range_x[2])  # Rango para av1
-                add_agent!(Car, model; pos = (pos_x, rand(7:8)), vel=SVector{2, Float64}(0.1, 0.0))
-            end
-        end
-    end
+    add_cars(model, numCarsN, av2, Float64(right))
+    add_cars(model, numCarsO, av1, Float64(normal))
     model
 end
 
