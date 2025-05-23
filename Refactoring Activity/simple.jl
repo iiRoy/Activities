@@ -74,6 +74,29 @@ function is_light_ahead(agent, light, mode = :check)
     end
 end
 
+const SMOOTHING_FACTOR = 0.18
+
+function compute_speed(agent::Car)
+    return agent.street === av1 ? agent.vel[1] + 0.6 : agent.vel[2] + 2.0
+end
+
+function compute_back(agent::Car)
+    return agent.street === av1 ? agent.vel[1] - 0.2 : agent.vel[2] - 0.6
+end
+
+function compute_velocities(agent::Car, speed, back, dist)
+    if agent.street === av1
+        stop      = (cos(agent.orientation) * max(back * (1 - dist * (1 - SMOOTHING_FACTOR)), 0.0), 0.0)
+        accelerate = (cos(agent.orientation) * max(0.0, speed * (1 - SMOOTHING_FACTOR / (0.3 + SMOOTHING_FACTOR))), 0.0)
+        reverse   = (cos(agent.orientation) * min(back * (1 - dist * (1 - SMOOTHING_FACTOR)), 1.0), 0.0)
+    else
+        stop      = (0.0, -sin(agent.orientation) * max(back * (1 - SMOOTHING_FACTOR), 0.0))
+        accelerate = (0.0, sin(agent.orientation) * max(0.0, speed * (1 - SMOOTHING_FACTOR / (0.1 + SMOOTHING_FACTOR))))
+        reverse   = (0.0, -sin(agent.orientation) * max(back, 0.15))
+    end
+    return stop, accelerate, reverse
+end
+
 # Comportamiento del auto
 function agent_step!(agent::Car, model)
     # Verificar el coche más cercano
@@ -82,60 +105,34 @@ function agent_step!(agent::Car, model)
     # Verificar el semáforo más cercano
     light, dist_to_light = closest_agent_ahead(agent, model, stopLight, 20.0, is_light_ahead)
 
-    x = 0.18
-    # Suavizado para hacer la transición de velocidad más fluida
-    speed = agent.street === av1 ? agent.vel[1] + 0.6 : agent.vel[2] + 2.0
-    back = agent.street === av1 ? agent.vel[1] - 0.2 : agent.vel[2] - 0.6
-    # Definir decremento y aceleración según la calle (X o Y)
-    if agent.street === av1
-        # Para av1, los autos se mueven en el eje X
-        stop = (cos(agent.orientation)*max(back * (1-(dist_to_light<dist_to_car ? dist_to_light : dist_to_car)*(1-x)), 0.0), 0.0)  # Reduce la velocidad más lentamente
-        accelerate = (cos(agent.orientation)*max(0.0, speed * (1-x/(0.3+x))), 0.0)  # Aumenta la velocidad gradualmente
-        reverse = (cos(agent.orientation)*min(back * (1-(dist_to_light<dist_to_car ? dist_to_light : dist_to_car)*(1-x)), 1), 0.0)  # Retrocede suavemente
-    else  # agent.street === av2
-        # Para av2, los autos deben moverse hacia arriba (velocidad positiva en Y)
-        stop = (0.0, -sin(agent.orientation)*max(back * (1-x), 0.0))  # Reduce la velocidad suavemente
-        accelerate = (0.0, sin(agent.orientation)*max(0.0, speed * (1-x/(0.1+x)))) # Aumenta la velocidad suavemente hacia arriba (positivo en Y)
-        reverse = (0.0, -sin(agent.orientation) * max(back, 0.15))  # Retrocede suavemente con un valor máximo 
-    end
-    
+
+    speed = compute_speed(agent)
+    back  = compute_back(agent)
+    dist  = min(dist_to_car, dist_to_light)
+    stop, accelerate, reverse = compute_velocities(agent, speed, back, dist)
 
     new_vel = accelerate
 
-    # Prioridad 1: Frenar si hay un coche delante en la misma calle
     if closest_car !== nothing && dist_to_car < dist_to_light
-        if dist_to_car <= 2.5 && dist_to_car >= 1.2
+        if 1.2 <= dist_to_car <= 2.5
             new_vel = stop
-        elseif dist_to_car < (agent.street === av2 ? 2.4 : 2.65)
-                new_vel = reverse
-        else  # Si está a una distancia segura, continuar acelerando
-            new_vel = accelerate
+        elseif dist_to_car < (agent.street === av2 ? 2.5 : 2.75)
+            new_vel = reverse
         end
-    # Prioridad 2: Evaluar el semáforo, pero solo si está en rojo o amarillo
-    elseif light !== nothing
-        if light.status === red || light.status === yellow
-            if dist_to_light <= 3.5 + (agent.street === av2 ? 5 : 0) && dist_to_light >= 1.8
-                new_vel = stop  # Desacelerar si está cerca del semáforo
-            elseif dist_to_light < 1.8
-                new_vel = reverse
-            end
-        else
-            new_vel = accelerate  # Si el semáforo está en verde o lejos, acelerar
+    elseif light !== nothing && (light.status == red || light.status == yellow)
+        if dist_to_light <= (agent.street === av2 ? 9.5 : 3.5) && dist_to_light >= 1.2
+            new_vel = stop
+        elseif dist_to_light < 1.4
+            new_vel = reverse
         end
-    else
-        # Si no hay semáforo ni coche adelante, continuar acelerando
-        new_vel = accelerate
-    end  # Multiply the direction by the speed scalar
-    
-    # Aplicar suavizado en la velocidad
-    agent.vel = agent.vel .* (1 - x) .+ new_vel .* x
-
-    # Verificar si el auto ha sido teletransportado
-    if agent.pos[1] < 0.5
-        agent.vel = (0.15,0)
     end
 
-    # Mover el auto en el espacio sin cambiar de dirección
+    agent.vel = agent.vel .* (1 - SMOOTHING_FACTOR) .+ new_vel .* SMOOTHING_FACTOR
+
+    if agent.pos[1] < 0.5
+        agent.vel = (0.15, 0.0)
+    end
+
     move_agent!(agent, model, 0.4)
 end
 
