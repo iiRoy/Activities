@@ -148,3 +148,30 @@ Como un extra, se implementaron dos carriles por cruce para hacer más dinámica
 > **Rodrigo:** Implementación de carriles de cambio por cruce.
 
 [^1]: Wilensky, U. (1998). NetLogo Traffic Intersection model. http://ccl.northwestern.edu/netlogo/models/TrafficIntersection. Center for Connected Learning and Computer-Based Modeling, Northwestern University, Evanston, IL.
+
+# Explicación y Reflexión Final de la Actividad (Refactorización)
+
+---
+
+## ✅ Explicación de qué problema resolviste
+
+En esta actividad resolvimos el problema de **duplicación de lógica** y **complejidad innecesaria** en la detección de agentes (autos y semáforos) dentro de un modelo de simulación basado en agentes (`Agents.jl`). El código original tenía funciones específicas con estructuras similares pero no reutilizables (`closest_car_ahead`, `closest_light_ahead`), lo que generaba dificultades para mantener y escalar el código.
+
+La solución fue **refactorizar estas funciones en una sola función genérica (`closest_agent_ahead`)** que permite pasar una condición de “adelante” personalizada. También modularizamos el comportamiento de los autos (`agent_step!`) separando la lógica de velocidad y control de movimiento en funciones como `compute_speed`, `compute_back` y `compute_velocities`, mejorando así la legibilidad, mantenibilidad y escalabilidad del proyecto.
+
+---
+
+## ✨ Reflexión final por cada miembro
+
+### 👤 Fernando
+> Esta actividad me ayudó a ver el valor del refactoring, no solo para limpiar el código, sino para hacerlo más lógico y legible. Antes pensaba que reescribir funciones similares era normal, pero ahora entiendo que abstraer bien desde el inicio ahorra mucho esfuerzo.
+
+### 👤 Alejandro
+> Me gustó mucho trabajar con funciones genéricas en Julia. Ver cómo pasamos de dos funciones específicas a una sola función reutilizable me hizo pensar más en términos de diseño escalable. También aprendí a valorar la importancia de los tipos y cómo los errores de tipado pueden afectar la ejecución del código.
+
+### 👤 Diego
+> Lo más valioso fue entender que refactorizar no es solo una mejora estética, sino una necesidad para mantener la calidad del software a largo plazo. Esta experiencia me dejó más consciente del poder que tienen nombres claros, separación de responsabilidades y pruebas visuales de los cambios.
+
+### 👤 Rodrigo
+> Me di cuenta de que aunque el código "funcione", eso no significa que esté bien estructurado. Gracias a esta actividad aprendí a cuestionar cada parte del código: ¿esto se repite?, ¿puede dividirse?, ¿tiene sentido el nombre?, ¿es fácil de modificar? Siento que ahora programo con una visión más de equipo y de producto.
+
