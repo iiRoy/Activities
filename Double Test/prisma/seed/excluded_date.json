@@ -1,0 +1,87 @@
+[
+  {
+    "id_group": 1,
+    "excluded_date": "2025-04-28T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 3,
+    "excluded_date": "2025-04-20T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 3,
+    "excluded_date": "2025-04-20T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 4,
+    "excluded_date": "2025-04-19T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 7,
+    "excluded_date": "2025-04-24T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 7,
+    "excluded_date": "2025-04-24T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 9,
+    "excluded_date": "2025-04-19T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 10,
+    "excluded_date": "2025-04-22T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 10,
+    "excluded_date": "2025-04-23T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 11,
+    "excluded_date": "2025-04-29T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 12,
+    "excluded_date": "2025-04-22T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 12,
+    "excluded_date": "2025-04-23T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 13,
+    "excluded_date": "2025-04-22T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 14,
+    "excluded_date": "2025-04-24T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 16,
+    "excluded_date": "2025-04-26T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 17,
+    "excluded_date": "2025-04-26T00:00:00.000",
+    "reason": "Día festivo"
+  },
+  {
+    "id_group": 17,
+    "excluded_date": "2025-04-28T00:00:00.000",
+    "reason": "Día festivo"
+  }
+]

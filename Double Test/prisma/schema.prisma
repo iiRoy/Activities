@@ -1,0 +1,257 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model assistant_coordinators {
+  id_assistant_coord Int                         @id @default(autoincrement()) @db.UnsignedInt
+  name               String?                     @db.VarChar(255)
+  paternal_name      String?                     @db.VarChar(255)
+  maternal_name      String?                     @db.VarChar(255)
+  email              String                      @db.VarChar(255)
+  phone_number       String?                     @db.VarChar(255)
+  id_venue           Int                         @db.UnsignedInt
+  role               assistant_coordinators_role @default(Pendiente)
+  venues             venues                      @relation(fields: [id_venue], references: [id_venue], onDelete: Cascade, onUpdate: Restrict, map: "assistant_coordinators_ibfk_1")
+
+  @@index([id_venue], map: "id_venue")
+}
+
+model collaborators {
+  id_collaborator    Int                    @id @default(autoincrement()) @db.UnsignedInt
+  name               String?                @db.VarChar(255)
+  paternal_name      String?                @db.VarChar(255)
+  maternal_name      String?                @db.VarChar(255)
+  email              String                 @db.VarChar(255)
+  phone_number       String?                @db.VarChar(255)
+  college            String?                @db.VarChar(255)
+  degree             String?                @db.VarChar(255)
+  semester           String?                @db.VarChar(255)
+  preferred_role     String?                @db.VarChar(255)
+  preferred_language String?                @db.VarChar(255)
+  preferred_level    String?                @db.VarChar(255)
+  preferred_group    Int?                   @db.UnsignedInt
+  gender             String?                @db.VarChar(255)
+  role               collaborators_role     @default(Pendiente)
+  status             collaborators_status   @default(Pendiente)
+  level              collaborators_level    @default(Pendiente)
+  language           collaborators_language @default(Pendiente)
+  id_group           Int?                   @db.UnsignedInt
+  groups             groups?                @relation(fields: [id_group], references: [id_group], onUpdate: Restrict, map: "collaborators_ibfk_1")
+  preferredGroup     groups?                @relation("preferred_group_fk", fields: [preferred_group], references: [id_group])
+
+  @@index([id_group], map: "id_group")
+}
+
+model audit_log {
+  id         Int         @id @default(autoincrement())
+  action     AuditAction
+  table_name String      @db.VarChar(50)
+  id_venue   Int?        @db.UnsignedInt  
+  username   String      @db.VarChar(255)
+  message    String      @db.Text
+  created_at DateTime    @default(now()) @db.Timestamp(0)
+
+  venues     venues?     @relation(fields: [id_venue], references: [id_venue], onDelete: NoAction, onUpdate: Restrict)
+
+  @@index([id_venue], map: "id_venue")
+}
+
+enum AuditAction {
+  INSERT
+  UPDATE
+  DELETE
+}
+
+model groups {
+  id_group                      Int             @id @default(autoincrement()) @db.UnsignedInt
+  name                          String?         @db.VarChar(255)
+  max_places                    Int?
+  occupied_places               Int?            @default(0)
+  language                      String?         @db.VarChar(255)
+  location                      String?         @db.VarChar(255)
+  level                         String?         @db.VarChar(255)
+  mode                          String?         @db.VarChar(255)
+  start_date                    DateTime?       @db.Date
+  end_date                      DateTime?       @db.Date
+  start_hour                    DateTime?       @db.Time(0)
+  end_hour                      DateTime?       @db.Time(0)
+  status                        groups_status   @default(Aprobada)
+  id_mentor                     Int?            @db.UnsignedInt
+  id_venue                      Int             @db.UnsignedInt
+  collaborators                 collaborators[]
+  mentors                       mentors?        @relation(fields: [id_mentor], references: [id_mentor], onUpdate: Restrict, map: "groups_ibfk_1")
+  venues                        venues          @relation(fields: [id_venue], references: [id_venue], onDelete: Cascade, onUpdate: Restrict, map: "groups_ibfk_2")
+  participants                  participants[]
+  excluded_days                 excluded_days[]
+  preferred_group_collaborators collaborators[] @relation("preferred_group_fk")
+  preferred_group_participants  participants[]  @relation("preferred_group_fk")
+
+  @@index([id_mentor], map: "id_mentor")
+  @@index([id_venue], map: "id_venue")
+}
+
+model excluded_days {
+  id_excluded   Int      @id @default(autoincrement()) @db.UnsignedInt
+  id_group      Int      @db.UnsignedInt
+  excluded_date DateTime @db.Date
+  reason        String?  @default("No especificado") @db.VarChar(255)
+  group         groups   @relation(fields: [id_group], references: [id_group], onDelete: Cascade)
+
+  @@map("excluded_days")
+}
+
+model mentors {
+  id_mentor     Int      @id @default(autoincrement()) @db.UnsignedInt
+  name          String?  @db.VarChar(255)
+  paternal_name String?  @db.VarChar(255)
+  maternal_name String?  @db.VarChar(255)
+  email         String   @db.VarChar(255)
+  phone_number  String?  @db.VarChar(255)
+  id_venue      Int      @db.UnsignedInt
+  groups        groups[]
+  venues        venues   @relation(fields: [id_venue], references: [id_venue], onDelete: Cascade, onUpdate: Restrict, map: "mentors_ibfk_1")
+
+  @@index([id_venue], map: "id_venue")
+}
+
+model participants {
+  id_participant     Int                 @id @default(autoincrement()) @db.UnsignedInt
+  name               String?             @db.VarChar(255)
+  paternal_name      String?             @db.VarChar(255)
+  maternal_name      String?             @db.VarChar(255)
+  email              String?             @db.VarChar(255)
+  year               String?             @db.VarChar(255)
+  education          String?             @db.VarChar(255)
+  participation_file Bytes               @db.Blob
+  preferred_group    Int?                @db.UnsignedInt
+  status             participants_status @default(Pendiente)
+  id_group           Int?                @db.UnsignedInt
+  id_tutor           Int?                @db.UnsignedInt
+  preferredGroup     groups?             @relation("preferred_group_fk", fields: [preferred_group], references: [id_group])
+  groups             groups?             @relation(fields: [id_group], references: [id_group], onUpdate: Restrict, map: "participants_ibfk_1")
+  tutors             tutors?             @relation(fields: [id_tutor], references: [id_tutor], onUpdate: Restrict, map: "participants_ibfk_2")
+
+  @@index([id_group], map: "id_group")
+  @@index([id_tutor], map: "id_tutor")
+}
+
+model superusers {
+  id_superuser Int      @id @default(autoincrement()) @db.UnsignedInt
+  name           String? @db.VarChar(255)
+  paternal_name  String? @db.VarChar(255)
+  maternal_name  String? @db.VarChar(255)
+  username     String   @db.VarChar(255)
+  email        String   @unique(map: "email") @db.VarChar(255)
+  password     String   @db.VarChar(255)
+  profile_image  Bytes?  @db.Blob
+  tokenVersion Int    @default(0)
+  created_at   DateTime @default(now()) @db.Timestamp(0)
+  updated_at   DateTime @default(now()) @db.Timestamp(0)
+}
+
+model tutors {
+  id_tutor      Int            @id @default(autoincrement()) @db.UnsignedInt
+  name          String?        @db.VarChar(255)
+  paternal_name String?        @db.VarChar(255)
+  maternal_name String?        @db.VarChar(255)
+  email         String         @db.VarChar(255)
+  phone_number  String?        @db.VarChar(255)
+  participants  participants[]
+}
+
+model venue_coordinators {
+  id_venue_coord Int     @id @default(autoincrement()) @db.UnsignedInt
+  name           String? @db.VarChar(255)
+  paternal_name  String? @db.VarChar(255)
+  maternal_name  String? @db.VarChar(255)
+  email          String  @db.VarChar(255)
+  phone_number   String? @db.VarChar(255)
+  gender         String? @db.VarChar(255)
+  username       String  @db.VarChar(255)
+  password       String  @db.VarChar(255)
+  tokenVersion Int    @default(0)
+  profile_image  Bytes?  @db.Blob
+  profile_image_path    String?   @db.VarChar(255)
+  id_venue       Int     @db.UnsignedInt
+  venues         venues  @relation(fields: [id_venue], references: [id_venue], onDelete: Cascade, onUpdate: Restrict, map: "venue_coordinators_ibfk_1")
+
+  @@index([id_venue], map: "id_venue")
+}
+
+model venues {
+  id_venue               Int                      @id @default(autoincrement()) @db.UnsignedInt
+  name                   String                   @db.VarChar(255)
+  country                String?                  @db.VarChar(255)
+  state                  String?                  @db.VarChar(255)
+  location               String?                  @db.VarChar(255)
+  address                String?                  @db.VarChar(255)
+  logo                   Bytes?                   @db.Blob
+  participation_file     Bytes                    @db.Blob
+  logo_path              String?                  @db.VarChar(255)
+  participation_file_path String?                 @db.VarChar(255)
+  status                 venues_status            @default(Pendiente)
+  created_at             DateTime                 @default(now()) @db.Timestamp(0)
+  updated_at             DateTime                 @default(now()) @db.Timestamp(0)
+  assistant_coordinators assistant_coordinators[]
+  groups                 groups[]
+  mentors                mentors[]
+  venue_coordinators     venue_coordinators[]
+  audit_log              audit_log[]
+}
+
+enum venues_status {
+  Pendiente
+  Registrada_sin_participantes @map("Registrada sin participantes")
+  Registrada_con_participantes @map("Registrada con participantes")
+  Cancelada
+  Rechazada
+}
+
+enum assistant_coordinators_role {
+  Coordinadora_de_informes @map("Coordinadora de informes")
+  Coordinadora_Asociada    @map("Coordinadora Asociada")
+  Pendiente
+}
+
+enum participants_status {
+  Pendiente
+  Aprobada
+  Rechazada
+  Cancelada
+}
+
+enum collaborators_role {
+  Staff
+  Instructora
+  Facilitadora
+  Pendiente
+}
+
+enum collaborators_status {
+  Pendiente
+  Aprobada
+  Rechazada
+  Cancelada
+}
+
+enum collaborators_language {
+  Pendiente
+  Inglés
+  Español
+}
+
+enum groups_status {
+  Aprobada
+  Cancelada
+}
+
+enum collaborators_level {
+  Pendiente
+  Básico
+  Avanzado
+}

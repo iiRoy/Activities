@@ -1,0 +1,772 @@
+[
+  {
+    "name": "Aldo",
+    "paternal_name": "Sánchez",
+    "maternal_name": "Soria",
+    "email": "florenciaresendez@tec.mx",
+    "phone_number": "+52 796 578 9370"
+  },
+  {
+    "name": "Francisca",
+    "paternal_name": "Porras",
+    "maternal_name": "Cervántez",
+    "email": "liliacrespo@tec.mx",
+    "phone_number": "+52 281 194 9436"
+  },
+  {
+    "name": "Anabel",
+    "paternal_name": "Romero",
+    "maternal_name": "Montañez",
+    "email": "paola08@tec.mx",
+    "phone_number": "+52 323 507 4791"
+  },
+  {
+    "name": "Reina",
+    "paternal_name": "Velásquez",
+    "maternal_name": "Valdez",
+    "email": "aldonza65@tec.mx",
+    "phone_number": "+52 915 668 8345"
+  },
+  {
+    "name": "Nicolás",
+    "paternal_name": "Gutiérrez",
+    "maternal_name": "Batista",
+    "email": "iarellano@tec.mx",
+    "phone_number": "+52 286 184 9631"
+  },
+  {
+    "name": "Judith",
+    "paternal_name": "Bueno",
+    "maternal_name": "Saldivar",
+    "email": "hmontalvo@tec.mx",
+    "phone_number": "+52 767 377 4270"
+  },
+  {
+    "name": "René",
+    "paternal_name": "de la O",
+    "maternal_name": "Pedroza",
+    "email": "mercedeslira@tec.mx",
+    "phone_number": "+52 196 128 5590"
+  },
+  {
+    "name": "María Eugenia",
+    "paternal_name": "Luevano",
+    "maternal_name": "Valdez",
+    "email": "centenoclaudia@tec.mx",
+    "phone_number": "+52 335 532 4249"
+  },
+  {
+    "name": "Fernando",
+    "paternal_name": "Sierra",
+    "maternal_name": "Juárez",
+    "email": "scarranza@tec.mx",
+    "phone_number": "+52 986 594 3778"
+  },
+  {
+    "name": "Claudio",
+    "paternal_name": "Salgado",
+    "maternal_name": "Dueñas",
+    "email": "luevanoespartaco@tec.mx",
+    "phone_number": "+52 736 569 6530"
+  },
+  {
+    "name": "Irma",
+    "paternal_name": "Cabán",
+    "maternal_name": "Valdivia",
+    "email": "cestrada@tec.mx",
+    "phone_number": "+52 789 629 2443"
+  },
+  {
+    "name": "Indira",
+    "paternal_name": "Cepeda",
+    "maternal_name": "Prieto",
+    "email": "racosta@tec.mx",
+    "phone_number": "+52 780 511 4942"
+  },
+  {
+    "name": "María Luisa",
+    "paternal_name": "Feliciano",
+    "maternal_name": "López",
+    "email": "ceciliaposada@tec.mx",
+    "phone_number": "+52 351 805 6107"
+  },
+  {
+    "name": "Alonso",
+    "paternal_name": "Zambrano",
+    "maternal_name": "Zarate",
+    "email": "estevezcamila@tec.mx",
+    "phone_number": "+52 957 284 8952"
+  },
+  {
+    "name": "Salma",
+    "paternal_name": "Bueno",
+    "maternal_name": "Garay",
+    "email": "pjurado@tec.mx",
+    "phone_number": "+52 849 228 3270"
+  },
+  {
+    "name": "Eugenia",
+    "paternal_name": "Sarabia",
+    "maternal_name": "Ornelas",
+    "email": "mario03@tec.mx",
+    "phone_number": "+52 636 304 3136"
+  },
+  {
+    "name": "Elias",
+    "paternal_name": "Beltrán",
+    "maternal_name": "Laureano",
+    "email": "ivan19@tec.mx",
+    "phone_number": "+52 556 497 7930"
+  },
+  {
+    "name": "Dolores",
+    "paternal_name": "Armenta",
+    "maternal_name": "Escamilla",
+    "email": "lilia70@tec.mx",
+    "phone_number": "+52 881 642 3135"
+  },
+  {
+    "name": "Luis",
+    "paternal_name": "Valadez",
+    "maternal_name": "Abrego",
+    "email": "abelardonajera@tec.mx",
+    "phone_number": "+52 680 255 8370"
+  },
+  {
+    "name": "Rodolfo",
+    "paternal_name": "Santana",
+    "maternal_name": "Flórez",
+    "email": "zavaladulce@tec.mx",
+    "phone_number": "+52 320 658 7207"
+  },
+  {
+    "name": "Delia",
+    "paternal_name": "Rosario",
+    "maternal_name": "Juárez",
+    "email": "canalesjoaquin@tec.mx",
+    "phone_number": "+52 405 959 9419"
+  },
+  {
+    "name": "Sessa",
+    "paternal_name": "Cazares",
+    "maternal_name": "Riojas",
+    "email": "ilse17@tec.mx",
+    "phone_number": "+52 236 809 4997"
+  },
+  {
+    "name": "Ivonne",
+    "paternal_name": "Monroy",
+    "maternal_name": "Mesa",
+    "email": "chaconcristina@tec.mx",
+    "phone_number": "+52 220 937 7816"
+  },
+  {
+    "name": "Ana",
+    "paternal_name": "Pichardo",
+    "maternal_name": "Yáñez",
+    "email": "biancaaragon@tec.mx",
+    "phone_number": "+52 823 137 7378"
+  },
+  {
+    "name": "María Teresa",
+    "paternal_name": "Bravo",
+    "maternal_name": "Chávez",
+    "email": "ucarbajal@tec.mx",
+    "phone_number": "+52 207 701 5724"
+  },
+  {
+    "name": "Jorge",
+    "paternal_name": "Alonso",
+    "maternal_name": "Varela",
+    "email": "melgarteresa@tec.mx",
+    "phone_number": "+52 340 605 6940"
+  },
+  {
+    "name": "Marisela",
+    "paternal_name": "Baeza",
+    "maternal_name": "Trujillo",
+    "email": "vgalarza@tec.mx",
+    "phone_number": "+52 638 301 9979"
+  },
+  {
+    "name": "Pamela",
+    "paternal_name": "Espino",
+    "maternal_name": "Griego",
+    "email": "tellezandres@tec.mx",
+    "phone_number": "+52 834 178 9070"
+  },
+  {
+    "name": "Dulce",
+    "paternal_name": "Verdugo",
+    "maternal_name": "Zayas",
+    "email": "minervavasquez@tec.mx",
+    "phone_number": "+52 214 562 9339"
+  },
+  {
+    "name": "Victoria",
+    "paternal_name": "Lucio",
+    "maternal_name": "Adame",
+    "email": "irma23@tec.mx",
+    "phone_number": "+52 887 841 4061"
+  },
+  {
+    "name": "Flavio",
+    "paternal_name": "Raya",
+    "maternal_name": "Bahena",
+    "email": "tamezjonas@tec.mx",
+    "phone_number": "+52 702 889 9242"
+  },
+  {
+    "name": "Martha",
+    "paternal_name": "Romero",
+    "maternal_name": "Vásquez",
+    "email": "wmarquez@tec.mx",
+    "phone_number": "+52 328 160 1258"
+  },
+  {
+    "name": "Carmen",
+    "paternal_name": "Sanches",
+    "maternal_name": "Guerra",
+    "email": "pedro51@tec.mx",
+    "phone_number": "+52 530 853 2697"
+  },
+  {
+    "name": "Uriel",
+    "paternal_name": "Olmos",
+    "maternal_name": "Morales",
+    "email": "yacevedo@tec.mx",
+    "phone_number": "+52 396 920 5071"
+  },
+  {
+    "name": "Ariadna",
+    "paternal_name": "Rubio",
+    "maternal_name": "Cisneros",
+    "email": "humberto04@tec.mx",
+    "phone_number": "+52 762 391 2498"
+  },
+  {
+    "name": "Francisco",
+    "paternal_name": "Ocasio",
+    "maternal_name": "Patiño",
+    "email": "rrosales@tec.mx",
+    "phone_number": "+52 645 579 5602"
+  },
+  {
+    "name": "Úrsula",
+    "paternal_name": "Palacios",
+    "maternal_name": "Terán",
+    "email": "mauronieto@tec.mx",
+    "phone_number": "+52 750 145 2421"
+  },
+  {
+    "name": "Juan",
+    "paternal_name": "Santillán",
+    "maternal_name": "Vallejo",
+    "email": "carlos22@tec.mx",
+    "phone_number": "+52 395 710 7728"
+  },
+  {
+    "name": "Marcela",
+    "paternal_name": "Valle",
+    "maternal_name": "Cantú",
+    "email": "burgosilse@tec.mx",
+    "phone_number": "+52 310 739 7907"
+  },
+  {
+    "name": "Augusto",
+    "paternal_name": "Santillán",
+    "maternal_name": "Ochoa",
+    "email": "caridad42@tec.mx",
+    "phone_number": "+52 388 105 3857"
+  },
+  {
+    "name": "Cecilia",
+    "paternal_name": "Olivo",
+    "maternal_name": "Aparicio",
+    "email": "oliver91@tec.mx",
+    "phone_number": "+52 986 180 7226"
+  },
+  {
+    "name": "Daniel",
+    "paternal_name": "Ortega",
+    "maternal_name": "Aparicio",
+    "email": "hilda34@tec.mx",
+    "phone_number": "+52 812 572 7926"
+  },
+  {
+    "name": "Diana",
+    "paternal_name": "Flórez",
+    "maternal_name": "Garica",
+    "email": "romoevelio@tec.mx",
+    "phone_number": "+52 530 269 1280"
+  },
+  {
+    "name": "Guillermina",
+    "paternal_name": "Alvarado",
+    "maternal_name": "Casárez",
+    "email": "reynosonayeli@tec.mx",
+    "phone_number": "+52 327 819 4817"
+  },
+  {
+    "name": "Rebeca",
+    "paternal_name": "Sarabia",
+    "maternal_name": "Longoria",
+    "email": "georginabernal@tec.mx",
+    "phone_number": "+52 873 125 2712"
+  },
+  {
+    "name": "Ariadna",
+    "paternal_name": "Serrato",
+    "maternal_name": "Oquendo",
+    "email": "hernan86@tec.mx",
+    "phone_number": "+52 607 398 6240"
+  },
+  {
+    "name": "Martín",
+    "paternal_name": "de León",
+    "maternal_name": "Farías",
+    "email": "nperalta@tec.mx",
+    "phone_number": "+52 137 734 4498"
+  },
+  {
+    "name": "Rufino",
+    "paternal_name": "Ontiveros",
+    "maternal_name": "Valentín",
+    "email": "helena94@tec.mx",
+    "phone_number": "+52 887 696 6222"
+  },
+  {
+    "name": "Abel",
+    "paternal_name": "Sevilla",
+    "maternal_name": "Villegas",
+    "email": "nancy78@tec.mx",
+    "phone_number": "+52 911 390 3394"
+  },
+  {
+    "name": "Bernabé",
+    "paternal_name": "Sosa",
+    "maternal_name": "Roque",
+    "email": "isabelade-anda@tec.mx",
+    "phone_number": "+52 369 457 2887"
+  },
+  {
+    "name": "Fidel",
+    "paternal_name": "Serrano",
+    "maternal_name": "Bernal",
+    "email": "aurora59@tec.mx",
+    "phone_number": "+52 559 373 5748"
+  },
+  {
+    "name": "Alonso",
+    "paternal_name": "Solorzano",
+    "maternal_name": "Ibarra",
+    "email": "yuridiavazquez@tec.mx",
+    "phone_number": "+52 120 960 6366"
+  },
+  {
+    "name": "Dulce María",
+    "paternal_name": "Ocampo",
+    "maternal_name": "Carreón",
+    "email": "ecollazo@tec.mx",
+    "phone_number": "+52 777 113 6446"
+  },
+  {
+    "name": "Carla",
+    "paternal_name": "Mascareñas",
+    "maternal_name": "Lozano",
+    "email": "alma52@tec.mx",
+    "phone_number": "+52 964 709 8806"
+  },
+  {
+    "name": "Marisol",
+    "paternal_name": "Menchaca",
+    "maternal_name": "Velásquez",
+    "email": "mde-la-fuente@tec.mx",
+    "phone_number": "+52 716 351 8795"
+  },
+  {
+    "name": "Gonzalo",
+    "paternal_name": "Bueno",
+    "maternal_name": "Villalpando",
+    "email": "abraham87@tec.mx",
+    "phone_number": "+52 286 607 8763"
+  },
+  {
+    "name": "Sessa",
+    "paternal_name": "Peña",
+    "maternal_name": "Vaca",
+    "email": "joaquintejeda@tec.mx",
+    "phone_number": "+52 977 481 1473"
+  },
+  {
+    "name": "Raquel",
+    "paternal_name": "Caldera",
+    "maternal_name": "Pérez",
+    "email": "esteban97@tec.mx",
+    "phone_number": "+52 831 121 4427"
+  },
+  {
+    "name": "Gabriela",
+    "paternal_name": "Cano",
+    "maternal_name": "Cervántez",
+    "email": "qgallardo@tec.mx",
+    "phone_number": "+52 443 755 7976"
+  },
+  {
+    "name": "María José",
+    "paternal_name": "Porras",
+    "maternal_name": "Lozano",
+    "email": "laracarolina@tec.mx",
+    "phone_number": "+52 307 158 6797"
+  },
+  {
+    "name": "Isabela",
+    "paternal_name": "Arguello",
+    "maternal_name": "Córdova",
+    "email": "villarealgerman@tec.mx",
+    "phone_number": "+52 558 726 3610"
+  },
+  {
+    "name": "Soledad",
+    "paternal_name": "Guevara",
+    "maternal_name": "de la O",
+    "email": "preciadoangel@tec.mx",
+    "phone_number": "+52 141 975 6984"
+  },
+  {
+    "name": "Bianca",
+    "paternal_name": "Godínez",
+    "maternal_name": "Saldaña",
+    "email": "ignacio13@tec.mx",
+    "phone_number": "+52 275 553 3305"
+  },
+  {
+    "name": "Reynaldo",
+    "paternal_name": "Mendoza",
+    "maternal_name": "Barragán",
+    "email": "ariasalejandra@tec.mx",
+    "phone_number": "+52 988 502 8166"
+  },
+  {
+    "name": "María Teresa",
+    "paternal_name": "Munguía",
+    "maternal_name": "Romo",
+    "email": "pedro99@tec.mx",
+    "phone_number": "+52 661 125 2967"
+  },
+  {
+    "name": "Oswaldo",
+    "paternal_name": "Jurado",
+    "maternal_name": "Cantú",
+    "email": "gerardo56@tec.mx",
+    "phone_number": "+52 642 864 6659"
+  },
+  {
+    "name": "Perla",
+    "paternal_name": "Urbina",
+    "maternal_name": "Terrazas",
+    "email": "rubiofrida@tec.mx",
+    "phone_number": "+52 888 328 9970"
+  },
+  {
+    "name": "Berta",
+    "paternal_name": "Roldán",
+    "maternal_name": "Leyva",
+    "email": "catalinaledesma@tec.mx",
+    "phone_number": "+52 146 221 5550"
+  },
+  {
+    "name": "Nelly",
+    "paternal_name": "Peña",
+    "maternal_name": "Portillo",
+    "email": "teranalfredo@tec.mx",
+    "phone_number": "+52 500 756 4577"
+  },
+  {
+    "name": "Reynaldo",
+    "paternal_name": "Arroyo",
+    "maternal_name": "Amador",
+    "email": "martin86@tec.mx",
+    "phone_number": "+52 971 859 3827"
+  },
+  {
+    "name": "Adriana",
+    "paternal_name": "Rojas",
+    "maternal_name": "Rosales",
+    "email": "adrianavelazquez@tec.mx",
+    "phone_number": "+52 285 841 8801"
+  },
+  {
+    "name": "Germán",
+    "paternal_name": "Mares",
+    "maternal_name": "Portillo",
+    "email": "dolores78@tec.mx",
+    "phone_number": "+52 592 781 3603"
+  },
+  {
+    "name": "Perla",
+    "paternal_name": "Gaona",
+    "maternal_name": "Ulibarri",
+    "email": "jose29@tec.mx",
+    "phone_number": "+52 529 938 6609"
+  },
+  {
+    "name": "Hermelinda",
+    "paternal_name": "Campos",
+    "maternal_name": "Fuentes",
+    "email": "abigailpulido@tec.mx",
+    "phone_number": "+52 156 282 5518"
+  },
+  {
+    "name": "Verónica",
+    "paternal_name": "Zaragoza",
+    "maternal_name": "Girón",
+    "email": "fde-la-garza@tec.mx",
+    "phone_number": "+52 222 243 2403"
+  },
+  {
+    "name": "Leonel",
+    "paternal_name": "Arguello",
+    "maternal_name": "Meza",
+    "email": "reina52@tec.mx",
+    "phone_number": "+52 958 416 7605"
+  },
+  {
+    "name": "María del Carmen",
+    "paternal_name": "Vásquez",
+    "maternal_name": "Carrero",
+    "email": "vrosario@tec.mx",
+    "phone_number": "+52 269 326 3276"
+  },
+  {
+    "name": "Nancy",
+    "paternal_name": "Preciado",
+    "maternal_name": "Estrada",
+    "email": "hgamboa@tec.mx",
+    "phone_number": "+52 623 431 2349"
+  },
+  {
+    "name": "Alicia",
+    "paternal_name": "Navarrete",
+    "maternal_name": "Durán",
+    "email": "resendezhermelinda@tec.mx",
+    "phone_number": "+52 678 142 7725"
+  },
+  {
+    "name": "Rebeca",
+    "paternal_name": "Domínguez",
+    "maternal_name": "Molina",
+    "email": "erolon@tec.mx",
+    "phone_number": "+52 728 901 4772"
+  },
+  {
+    "name": "Carolina",
+    "paternal_name": "Bermúdez",
+    "maternal_name": "Vela",
+    "email": "pinaricardo@tec.mx",
+    "phone_number": "+52 801 417 6804"
+  },
+  {
+    "name": "Cynthia",
+    "paternal_name": "Riojas",
+    "maternal_name": "Mejía",
+    "email": "aamaya@tec.mx",
+    "phone_number": "+52 462 418 3379"
+  },
+  {
+    "name": "Lucía",
+    "paternal_name": "Flórez",
+    "maternal_name": "Lucio",
+    "email": "lourdesmontano@tec.mx",
+    "phone_number": "+52 191 417 6664"
+  },
+  {
+    "name": "Natividad",
+    "paternal_name": "Solano",
+    "maternal_name": "Arriaga",
+    "email": "varelazeferino@tec.mx",
+    "phone_number": "+52 223 643 5826"
+  },
+  {
+    "name": "Óscar",
+    "paternal_name": "Cedillo",
+    "maternal_name": "Solorio",
+    "email": "elvia16@tec.mx",
+    "phone_number": "+52 616 720 4244"
+  },
+  {
+    "name": "René",
+    "paternal_name": "Olivera",
+    "maternal_name": "Curiel",
+    "email": "ovalenzuela@tec.mx",
+    "phone_number": "+52 117 375 1952"
+  },
+  {
+    "name": "Bernabé",
+    "paternal_name": "Balderas",
+    "maternal_name": "Guardado",
+    "email": "blancajimenez@tec.mx",
+    "phone_number": "+52 798 575 6925"
+  },
+  {
+    "name": "Mateo",
+    "paternal_name": "Rosario",
+    "maternal_name": "Loera",
+    "email": "lmolina@tec.mx",
+    "phone_number": "+52 915 709 9548"
+  },
+  {
+    "name": "Andrea",
+    "paternal_name": "Toro",
+    "maternal_name": "Ávila",
+    "email": "humbertoballesteros@tec.mx",
+    "phone_number": "+52 228 751 4716"
+  },
+  {
+    "name": "Laura",
+    "paternal_name": "Barrera",
+    "maternal_name": "Yáñez",
+    "email": "lnazario@tec.mx",
+    "phone_number": "+52 268 878 8130"
+  },
+  {
+    "name": "Cristina",
+    "paternal_name": "Pineda",
+    "maternal_name": "Frías",
+    "email": "joaquin60@tec.mx",
+    "phone_number": "+52 261 250 5447"
+  },
+  {
+    "name": "Flavio",
+    "paternal_name": "Villalobos",
+    "maternal_name": "Muro",
+    "email": "maldonadoclemente@tec.mx",
+    "phone_number": "+52 538 343 6508"
+  },
+  {
+    "name": "Diego",
+    "paternal_name": "Salgado",
+    "maternal_name": "Valles",
+    "email": "slara@tec.mx",
+    "phone_number": "+52 278 178 1219"
+  },
+  {
+    "name": "Concepción",
+    "paternal_name": "Castillo",
+    "maternal_name": "Ferrer",
+    "email": "evaparra@tec.mx",
+    "phone_number": "+52 583 425 7784"
+  },
+  {
+    "name": "Ignacio",
+    "paternal_name": "Urías",
+    "maternal_name": "Castro",
+    "email": "montenegrolucia@tec.mx",
+    "phone_number": "+52 578 751 3930"
+  },
+  {
+    "name": "Carlos",
+    "paternal_name": "Feliciano",
+    "maternal_name": "Zamudio",
+    "email": "ofelialedesma@tec.mx",
+    "phone_number": "+52 898 804 1604"
+  },
+  {
+    "name": "Elvira",
+    "paternal_name": "Lugo",
+    "maternal_name": "Maestas",
+    "email": "israelnegrete@tec.mx",
+    "phone_number": "+52 621 505 2064"
+  },
+  {
+    "name": "Perla",
+    "paternal_name": "Laureano",
+    "maternal_name": "Maldonado",
+    "email": "tomas43@tec.mx",
+    "phone_number": "+52 611 350 3355"
+  },
+  {
+    "name": "Alvaro",
+    "paternal_name": "Villareal",
+    "maternal_name": "Sanabria",
+    "email": "concepcionhidalgo@tec.mx",
+    "phone_number": "+52 969 531 4289"
+  },
+  {
+    "name": "Teresa",
+    "paternal_name": "Alva",
+    "maternal_name": "Treviño",
+    "email": "maria-eugeniaresendez@tec.mx",
+    "phone_number": "+52 529 912 4793"
+  },
+  {
+    "name": "Gilberto",
+    "paternal_name": "Blanco",
+    "maternal_name": "Mejía",
+    "email": "paulinavigil@tec.mx",
+    "phone_number": "+52 688 203 8296"
+  },
+  {
+    "name": "Armando",
+    "paternal_name": "Medrano",
+    "maternal_name": "Prado",
+    "email": "cottojuan-carlos@tec.mx",
+    "phone_number": "+52 271 737 1089"
+  },
+  {
+    "name": "Alma",
+    "paternal_name": "Arguello",
+    "maternal_name": "de Anda",
+    "email": "chavarrialeonardo@tec.mx",
+    "phone_number": "+52 174 797 8136"
+  },
+  {
+    "name": "Ricardo",
+    "paternal_name": "Acevedo",
+    "maternal_name": "Jaramillo",
+    "email": "anguianohelena@tec.mx",
+    "phone_number": "+52 767 249 6236"
+  },
+  {
+    "name": "Beatriz",
+    "paternal_name": "Valladares",
+    "maternal_name": "Toro",
+    "email": "perezjorge-luis@tec.mx",
+    "phone_number": "+52 506 926 6285"
+  },
+  {
+    "name": "Dalia",
+    "paternal_name": "Noriega",
+    "maternal_name": "Madrigal",
+    "email": "lermaabril@tec.mx",
+    "phone_number": "+52 679 407 4684"
+  },
+  {
+    "name": "Vicente",
+    "paternal_name": "Bustos",
+    "maternal_name": "Garza",
+    "email": "mitzy62@tec.mx",
+    "phone_number": "+52 454 306 1097"
+  },
+  {
+    "name": "Noemí",
+    "paternal_name": "Armenta",
+    "maternal_name": "Guajardo",
+    "email": "ariadna94@tec.mx",
+    "phone_number": "+52 456 652 8936"
+  },
+  {
+    "name": "Mayte",
+    "paternal_name": "Camarillo",
+    "maternal_name": "Merino",
+    "email": "elsa19@tec.mx",
+    "phone_number": "+52 967 558 1631"
+  },
+  {
+    "name": "Amador",
+    "paternal_name": "Díaz",
+    "maternal_name": "Cortés",
+    "email": "dsaenz@tec.mx",
+    "phone_number": "+52 568 699 6286"
+  }
+]

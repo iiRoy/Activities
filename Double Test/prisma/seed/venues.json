@@ -1,0 +1,38 @@
+[
+  {
+    "name": "ITESM Puebla",
+    "location": "Puebla, Puebla, México",
+    "address": "Diagonal Caraballo 020 558, Vieja Costa Rica, VER 63602-5429",
+    "status": "Registrada con participantes"
+  },
+  {
+    "name": "ITESM Guadalajara",
+    "location": "Guadalajara, Jalisco, México",
+    "address": "Circuito Francia 656 Interior 214, Nueva Zambia, SON 14414",
+    "status": "Registrada con participantes"
+  },
+  {
+    "name": "Universidad de los Ándes",
+    "location": "Bogotá, Colombia",
+    "address": "Diagonal Norte Montañez 741 256, San Indira los bajos, JAL 48878",
+    "status": "Registrada con participantes"
+  },
+  {
+    "name": "MIT",
+    "location": "Cambridge, Massachusetts, USA",
+    "address": "Eje vial Montenegro 686 Edif. 669 , Depto. 645, San Yuridia de la Montaña, MEX 27692-5021",
+    "status": "Registrada con participantes"
+  },
+  {
+    "name": "ITESM Querétaro",
+    "location": "Querétaro, Querétaro, México",
+    "address": "Andador Norte Botello 662 Edif. 650 , Depto. 556, Nueva Zimbabwe, COL 34828-2503",
+    "status": "Registrada con participantes"
+  },
+  {
+    "name": "Universidad La Salle",
+    "location": "Ciudad de México, México",
+    "address": "Boulevard de Jesús 043 Interior 970, San Esther los altos, SIN 74076",
+    "status": "Pendiente"
+  }
+]

@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Adán",
+    "paternal_name": "Zarate",
+    "maternal_name": "Velasco",
+    "email": "dulce-mariade-la-garza@tec.mx",
+    "phone_number": "430.563.5392x97343",
+    "gender": "Femenino",
+    "username": "adán.zarate",
+    "password": "qb+jC6Vbl@",
+    "id_venue": 1
+  },
+  {
+    "name": "Dulce María",
+    "paternal_name": "Ontiveros",
+    "maternal_name": "Yáñez",
+    "email": "corta@tec.mx",
+    "phone_number": "1-893-424-1093x704",
+    "gender": "Femenino",
+    "username": "dulce maría.ontiveros",
+    "password": "^m^1Yxocp*",
+    "id_venue": 2
+  },
+  {
+    "name": "Marcos",
+    "paternal_name": "Ybarra",
+    "maternal_name": "Hernández",
+    "email": "rpabon@tec.mx",
+    "phone_number": "03691951429",
+    "gender": "Femenino",
+    "username": "marcos.ybarra",
+    "password": "_4i0x5Bz^*",
+    "id_venue": 3
+  },
+  {
+    "name": "Luz",
+    "paternal_name": "Patiño",
+    "maternal_name": "Vigil",
+    "email": "ignacio43@tec.mx",
+    "phone_number": "206.819.7431x2595",
+    "gender": "Femenino",
+    "username": "luz.patiño",
+    "password": "N@!0#%Wn5V",
+    "id_venue": 4
+  },
+  {
+    "name": "Barbara",
+    "paternal_name": "Segovia",
+    "maternal_name": "Arce",
+    "email": "jose-mariapatino@tec.mx",
+    "phone_number": "395-145-3321",
+    "gender": "Femenino",
+    "username": "barbara.segovia",
+    "password": "(WI*DgBx(6",
+    "id_venue": 5
+  },
+  {
+    "name": "Arantza",
+    "paternal_name": "Vozcovia",
+    "maternal_name": "Ramírez",
+    "email": "arantza.voz@tec.mx",
+    "phone_number": "432-532-4234",
+    "gender": "Femenino",
+    "username": "arantza.voz",
+    "password": "(WI*DgBx(6",
+    "id_venue": 6
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Raúl",
+    "paternal_name": "Vanegas",
+    "maternal_name": "Bernal",
+    "email": "beltranolivia@tec.mx",
+    "phone_number": "(450)926-1286",
+    "id_venue": 1,
+    "role": "Coordinadora Asociada"
+  },
+  {
+    "name": "Micaela",
+    "paternal_name": "Menéndez",
+    "maternal_name": "Narváez",
+    "email": "kbadillo@tec.mx",
+    "phone_number": "283-626-6745x0456",
+    "id_venue": 1,
+    "role": "Coordinadora de informes"
+  },
+  {
+    "name": "Yuridia",
+    "paternal_name": "Segovia",
+    "maternal_name": "Bétancourt",
+    "email": "lpichardo@tec.mx",
+    "phone_number": "+74(3)1921735471",
+    "id_venue": 3,
+    "role": "Coordinadora Asociada"
+  },
+  {
+    "name": "Patricio",
+    "paternal_name": "Segovia",
+    "maternal_name": "Peña",
+    "email": "ncaldera@tec.mx",
+    "phone_number": "1-604-324-0626x390",
+    "id_venue": 4,
+    "role": "Coordinadora de informes"
+  },
+  {
+    "name": "Araceli",
+    "paternal_name": "Gutiérrez",
+    "maternal_name": "Palomo",
+    "email": "benitezsessa@tec.mx",
+    "phone_number": "643-438-7682x6169",
+    "id_venue": 5,
+    "role": "Coordinadora Asociada"
+  },
+  {
+    "name": "Adalberto",
+    "paternal_name": "Tejada",
+    "maternal_name": "Guzmán",
+    "email": "camarilloruby@tec.mx",
+    "phone_number": "+75(0)0320968642",
+    "id_venue": 5,
+    "role": "Coordinadora de informes"
+  },
+  {
+    "name": "Patricia",
+    "paternal_name": "López",
+    "maternal_name": "Mateos",
+    "email": "patricialopez@tec.mx",
+    "phone_number": "+32 3234 324 2345",
+    "id_venue": 6,
+    "role": "Coordinadora de informes"
+  }
+]
